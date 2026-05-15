@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<p th:if="${pedidos == null || pedidos.size() == 0}">Este cliente
+		no tiene pedidos.</p>
+
+	<table th:if="${pedidos != null && pedidos.size() > 0}" border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Estado</th>
+				<th>Total</th>
+				<th>Productos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pedido : ${pedidos}">
+				<td th:text="${pedido.id}"></td>
+				<td th:text="${pedido.fecha}"></td>
+				<td th:text="${pedido.estado}"></td>
+				<td th:text="${pedido.total}"></td>
+				<td><span th:each="prod : ${pedido.productos}"
+					th:text="${prod.nombre} + ', '"></span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<a th:href="@{/clientes/lista}">Volver al listado de clientes</a>
+</body>
+</html>

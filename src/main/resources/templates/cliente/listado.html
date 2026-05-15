@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<a th:href="@{/clientes/nuevo}">+ Nuevo cliente</a>
+	<a th:href="@{/clientes/buscar}">Buscar clientes</a>
+	<a th:href="@{/pedidos/por-estado}">Buscar pedidos por estado</a>
+	<a th:href="@{/productos/buscar}">Buscar productos</a>
+
+	<p th:if="${clientes == null || clientes.size() == 0}">No hay datos
+		que mostrar</p>
+
+	<p th:if="${!(clientes == null || clientes.size() == 0)}"
+		th:text="${intro}"></p>
+
+	<table th:if="${!(clientes == null || clientes.size() == 0)}"
+		border="1">
+		<thead>
+			<tr>
+				<th>Nombre completo</th>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>E-mail</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cliente : ${clientes}">
+				<td th:text="${cliente.nombre + ' ' + cliente.apellido}"></td>
+				<td th:text="${cliente.nombre}"></td>
+				<td th:text="${cliente.apellido}"></td>
+				<td th:text="${cliente.email}"></td>
+				<td><a th:href="@{'/clientes/id/' + ${cliente.id}}">Ver</a> <a
+					th:href="@{'/clientes/editar/' + ${cliente.id}}">Editar</a> <a
+					th:href="@{'/clientes/borrar/' + ${cliente.id}}">Borrar</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

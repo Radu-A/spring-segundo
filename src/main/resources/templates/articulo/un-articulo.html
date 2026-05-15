@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <p th:if="${articulo == null}">No hay datos que mostrar</p>
+
+    <ul th:if="${articulo != null}">
+        <li>Id: <span th:text="${articulo.id}"></span></li>
+        <li>Nombre: <span th:text="${articulo.nombre}"></span></li>
+        <li>Descripción: <span th:text="${articulo.descripcion}"></span></li>
+        <li>Precio: <span th:text="${articulo.precio}"></span></li>
+        <li>Stock: <span th:text="${articulo.stock}"></span></li>
+    </ul>
+
+    <a th:href="@{/articulos/lista}">Volver al listado</a>
+</body>
+</html>

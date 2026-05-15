@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<form th:action="@{/pedidos/por-estado}" method="GET">
+
+		<label>Estado: </label> <select name="estado">
+			<option value="">--Seleccionar--</option>
+			<option value="PENDIENTE"
+				th:selected="${estadoSeleccionado  == 'PENDIENTE'}">Pendiente</option>
+			<option value="COMPLETADO"
+				th:selected="${estadoSeleccionado  == 'COMPLETADO'}">Completado</option>
+			<option value="CANCELADO"
+				th:selected="${estadoSeleccionado  == 'CANCELADO'}">Cancelado</option>
+		</select>
+	</form>
+
+	<p th:if="${pedidos != null && pedidos.size() == 0}">No se
+		encontraron pedidos con ese estado.</p>
+
+	<table th:if="${pedidos != null && pedidos.size() > 0}">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Estado</th>
+				<th>Total</th>
+				<th>Cliente</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pedido : ${pedidos}">
+				<td th:text="${pedido.id}"></td>
+				<td th:text="${pedido.fecha}"></td>
+				<td th:text="${pedido.estado}"></td>
+				<td th:text="${pedido.total}"></td>
+				<td
+					th:text="${pedido.cliente.nombre + ' ' + pedido.cliente.apellido}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<a th:href="@{/clientes/lista}">Volver al listado de clientes</a>
+</body>
+</html>

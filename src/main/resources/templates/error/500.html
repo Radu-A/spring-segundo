@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>500 - Error interno</title>
+<style>
+    body { font-family: sans-serif; margin: 40px; }
+    .caja-error { border: 1px solid #c0392b; background: #fdf3f3;
+                  padding: 20px; border-radius: 6px; max-width: 500px; }
+    h1 { color: #c0392b; }
+    .detalle { font-size: 0.85em; color: #888; margin-top: 16px; }
+</style>
+</head>
+<body>
+    <div class="caja-error">
+        <h1>500 - Error interno del servidor</h1>
+        <p>Se ha producido un error inesperado. Por favor, inténtalo de nuevo.</p>
+        <div class="detalle">
+            <div th:if="${error}" th:text="${error}"></div>
+            <div th:if="${path}" th:text="${path}"></div>
+        </div>
+    </div>
+    <br/>
+    <a th:href="@{/clientes/lista}">← Volver al listado</a>
+</body>
+</html>

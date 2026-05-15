@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<style>
+    .campo-error {
+        border: 1px solid red;
+    }
+    .error {
+        color: red;
+        font-size: 0.85em;
+        display: block;
+        margin-bottom: 6px;
+    }
+</style>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <p th:if="${articulo == null}">No hay datos que mostrar</p>
+
+    <form th:if="${articulo != null}"
+          th:action="${articulo.id != null} ? @{/articulos/actualizar} : @{/articulos/guardar}"
+          th:object="${articulo}"
+          method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Nombre: </label>
+        <input th:field="*{nombre}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></span>
+        <br />
+
+        <label>Descripción: </label>
+        <input th:field="*{descripcion}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" class="error"></span>
+        <br />
+
+        <label>Precio: </label>
+        <input th:field="*{precio}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}" class="error"></span>
+        <br />
+
+        <label>Stock: </label>
+        <input th:field="*{stock}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="error"></span>
+        <br />
+
+        <button>Enviar</button>
+    </form>
+
+    <a th:href="@{/articulos/lista}">Volver al listado</a>
+</body>
+</html>

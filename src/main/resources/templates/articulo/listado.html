@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <a th:href="@{/articulos/nuevo}">+ Nuevo artículo</a>
+
+    <p th:if="${articulos == null || articulos.size() == 0}">
+        No hay datos que mostrar
+    </p>
+
+    <p th:if="${!(articulos == null || articulos.size() == 0)}" th:text="${intro}"></p>
+
+    <table th:if="${!(articulos == null || articulos.size() == 0)}" border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="articulo : ${articulos}">
+                <td th:text="${articulo.nombre}"></td>
+                <td th:text="${articulo.descripcion}"></td>
+                <td th:text="${articulo.precio}"></td>
+                <td th:text="${articulo.stock}"></td>
+                <td>
+                    <a th:href="@{'/articulos/id/' + ${articulo.id}}">Ver</a>
+                    <a th:href="@{'/articulos/editar/' + ${articulo.id}}">Editar</a>
+                    <a th:href="@{'/articulos/borrar/' + ${articulo.id}}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

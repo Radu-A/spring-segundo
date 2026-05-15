@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>404 - Página no encontrada</title>
+<style>
+    body { font-family: sans-serif; margin: 40px; }
+    .caja-error { border: 1px solid #e67e22; background: #fef9f3;
+                  padding: 20px; border-radius: 6px; max-width: 500px; }
+    h1 { color: #d35400; }
+    .detalle { font-size: 0.85em; color: #888; margin-top: 16px; }
+</style>
+</head>
+<body>
+    <div class="caja-error">
+        <h1>404 - Página no encontrada</h1>
+        <p>La URL que has pedido no existe en esta aplicación.</p>
+        <div class="detalle">
+            <span th:text="${path}"></span>
+        </div>
+    </div>
+    <br/>
+    <a th:href="@{/clientes/lista}">← Volver al listado</a>
+</body>
+</html>

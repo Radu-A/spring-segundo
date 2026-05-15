@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<style>
+    .campo-error {
+        border: 1px solid red;
+    }
+    .error {
+        color: red;
+        font-size: 0.85em;
+        display: block;
+        margin-bottom: 6px;
+    }
+</style>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <p th:if="${cliente == null}">No hay datos que mostrar</p>
+
+    <form th:if="${cliente != null}"
+          th:action="${cliente.id != null} ? @{/clientes/actualizar} : @{/clientes/guardar}"
+          th:object="${cliente}"
+          method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Nombre: </label>
+        <input th:field="*{nombre}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error"></span>
+        <br />
+
+        <label>Apellido: </label>
+        <input th:field="*{apellido}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="error"></span>
+        <br />
+
+        <label>E-mail: </label>
+        <input th:field="*{email}" th:errorclass="campo-error"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+        <br />
+
+        <button>Enviar</button>
+
+    </form>
+
+    <a th:href="@{/clientes/lista}">Volver al listado</a>
+
+</body>
+</html>

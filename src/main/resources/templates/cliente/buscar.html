@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+
+	<h1 th:text="${cabecera}"></h1>
+	<form th:action="@{/clientes/buscar}" method="GET">
+		<label>Nombre: </label> <input type="text" name="nombre" />
+		<button>Buscar</button>
+	</form>
+
+	<p th:if="${clientes != null && clientes.size() == 0}">No se
+		encontraron clientes con ese nombre.</p>
+
+	<table th:if="${clientes != null && clientes.size > 0}" border="1">
+		<thead>
+			<tr>
+				<th>Nombre completo</th>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>E-mail</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cliente : ${clientes}">
+				<td th:text="${cliente.nombre + ' ' + cliente.apellido}"></td>
+				<td th:text="${cliente.nombre}"></td>
+				<td th:text="${cliente.apellido}"></td>
+				<td th:text="${cliente.email}"></td>
+				<td><a th:href="@{'/clientes/id/' + ${cliente.id}}">Ver</a> <a
+					th:href="@{'/clientes/editar/' + ${cliente.id}}">Editar</a> <a
+					th:href="@{'/clientes/borrar/' + ${cliente.id}}">Borrar</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br />
+	<a th:href="@{/clientes/lista}">Volver al listado</a>
+</body>
+</html>

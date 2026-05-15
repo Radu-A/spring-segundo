@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<p th:if="${cliente == null}">No hay datos que mostrar</p>
+
+	<ul th:if="${cliente != null}">
+		<li>Id: <span th:text="${cliente.id}"></span></li>
+		<li>Nombre: <span th:text="${cliente.nombre}"></span></li>
+		<li>Apellido: <span th:text="${cliente.apellido}"></span></li>
+		<li>E-mail: <span th:text="${cliente.email}"></span></li>
+	</ul>
+
+	<!-- Relación @OneToMany: pedidos de este cliente -->
+	<h2>Pedidos de este cliente</h2>
+
+	<p>
+		<a th:href="@{'/pedidos/por-cliente/' + ${cliente.id}}">Ver
+			pedidos (por cliente)</a>
+	</p>
+
+	<p th:if="${#lists.isEmpty(cliente.pedidos)}">Este cliente todavía
+		no tiene pedidos.</p>
+
+	<table th:unless="${#lists.isEmpty(cliente.pedidos)}" border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Estado</th>
+				<th>Total (€)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pedido : ${cliente.pedidos}">
+				<td th:text="${pedido.id}"></td>
+				<td th:text="${pedido.fecha}"></td>
+				<td th:text="${pedido.estado}"></td>
+				<td th:text="${pedido.total}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a th:href="@{/clientes/lista}">Volver al listado</a>
+</body>
+</html>

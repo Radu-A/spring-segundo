@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}">Artículo no encontrado</title>
+<style>
+    body { font-family: sans-serif; margin: 40px; }
+    .caja-error { border: 1px solid #e74c3c; background: #fdf3f3;
+                  padding: 20px; border-radius: 6px; max-width: 500px; }
+    h1 { color: #c0392b; }
+    p  { color: #444; }
+</style>
+</head>
+<body>
+    <div class="caja-error">
+        <h1>⚠️ <span th:text="${titulo}">Artículo no encontrado</span></h1>
+        <p th:text="${mensaje}">El artículo solicitado no existe.</p>
+    </div>
+    <br/>
+    <a th:href="@{/articulos/lista}">← Volver al listado</a>
+</body>
+</html>
