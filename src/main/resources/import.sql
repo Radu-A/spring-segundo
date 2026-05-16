@@ -137,23 +137,71 @@ INSERT INTO productos (nombre, precio) VALUES ('Alfombrilla XL para escritorio',
 INSERT INTO productos (nombre, precio) VALUES ('Adaptador USB-C multipuerto', 39.99);
 
 -- PEDIDO_PRODUCTOS (tabla de join @ManyToMany)
--- Pedido 1 (Juan): Laptop + Ratón
+-- Pedido 1: Portátil Lenovo + Ratón
 INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (1, 1);
 INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (1, 2);
--- Pedido 2 (María): Teclado
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (2, 3);
--- Pedido 3 (Carlos): Auriculares
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (3, 5);
--- Pedido 4 (Ana): Monitor
+
+-- Pedidos simples
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (2, 2);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (3, 3);
 INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (4, 4);
--- Pedido 5 (Luis): Ratón + Alfombrilla + USB Hub
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (5, 2);
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (5, 9);
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (5, 8);
--- Pedido 6 (Juan — segundo pedido): Laptop
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (6, 1);
--- Pedido 7 (Laura): Webcam + Adaptador
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (7, 6);
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (7, 10);
--- Pedido 8 (Pedro): SSD
-INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (8, 7);
+
+-- Pedido 5: Auriculares + Webcam
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (5, 5);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (5, 6);
+
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (6, 6);
+
+-- Pedido 7: Disco duro + Memoria USB
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (7, 7);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (7, 8);
+
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (8, 9);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (9, 10);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (10, 11);
+
+-- Pedido 11: Smartphone + Altavoces
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (11, 14);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (11, 12);
+
+-- Resto de pedidos unitarios
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (12, 13);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (13, 14);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (14, 15);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (15, 16);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (16, 17);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (17, 18);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (18, 19);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (19, 20);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (20, 21);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (21, 22);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (22, 23);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (23, 24);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (24, 25);
+
+-- Pedido 26 (Juan): Laptop HP + Ratón
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (26, 26);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (26, 27);
+
+-- Pedido 27 (María): Teclado
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (27, 28);
+
+-- Pedido 28 (Carlos): Auriculares
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (28, 30);
+
+-- Pedido 29 (Ana): Monitor
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (29, 29);
+
+-- Pedido 30 (Luis): Hub + Alfombrilla (Para cuadrar total 44.94)
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (30, 33);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (30, 34);
+
+-- Pedido 31 (Juan): Laptop
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (31, 26);
+
+-- Pedido 32 (Laura): Webcam + SSD
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (32, 31);
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (32, 32);
+
+-- Pedido 33 (Pedro): SSD
+INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (33, 32);

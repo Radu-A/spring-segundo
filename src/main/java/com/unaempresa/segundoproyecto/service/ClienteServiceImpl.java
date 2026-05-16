@@ -2,6 +2,8 @@ package com.unaempresa.segundoproyecto.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,13 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Cliente> findAllPaginado(Pageable pageable) {
+        // JpaRepository ya implementa findAll(Pageable) — solo delegamos.
+        return clienteRepository.findAll(pageable);
     }
 
     // En lugar de devolver null cuando el id no existe,

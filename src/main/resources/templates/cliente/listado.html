@@ -5,41 +5,54 @@
 <title th:text="${titulo}"></title>
 </head>
 <body>
-	<h1 th:text="${cabecera}"></h1>
+    <h1 th:text="${cabecera}"></h1>
 
-	<a th:href="@{/clientes/nuevo}">+ Nuevo cliente</a>
-	<a th:href="@{/clientes/buscar}">Buscar clientes</a>
-	<a th:href="@{/pedidos/por-estado}">Buscar pedidos por estado</a>
-	<a th:href="@{/productos/buscar}">Buscar productos</a>
+    <a th:href="@{/clientes/nuevo}">+ Nuevo cliente</a>
+    <a th:href="@{/clientes/buscar}">Buscar clientes</a>
+    <a th:href="@{/pedidos/por-estado}">Buscar pedidos por estado</a>
+    <a th:href="@{/productos/buscar}">Buscar productos</a>
 
-	<p th:if="${clientes == null || clientes.size() == 0}">No hay datos
-		que mostrar</p>
+    <p th:if="${clientes == null || clientes.totalElements == 0}">
+        No hay datos que mostrar
+    </p>
 
-	<p th:if="${!(clientes == null || clientes.size() == 0)}"
-		th:text="${intro}"></p>
+    <p th:if="${!(clientes == null || clientes.totalElements == 0)}" th:text="${intro}"></p>
 
-	<table th:if="${!(clientes == null || clientes.size() == 0)}"
-		border="1">
-		<thead>
-			<tr>
-				<th>Nombre completo</th>
-				<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>E-mail</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="cliente : ${clientes}">
-				<td th:text="${cliente.nombre + ' ' + cliente.apellido}"></td>
-				<td th:text="${cliente.nombre}"></td>
-				<td th:text="${cliente.apellido}"></td>
-				<td th:text="${cliente.email}"></td>
-				<td><a th:href="@{'/clientes/id/' + ${cliente.id}}">Ver</a> <a
-					th:href="@{'/clientes/editar/' + ${cliente.id}}">Editar</a> <a
-					th:href="@{'/clientes/borrar/' + ${cliente.id}}">Borrar</a></td>
-			</tr>
-		</tbody>
-	</table>
+    <table th:if="${!(clientes == null || clientes.totalElements == 0)}" border="1">
+        <thead>
+            <tr>
+                <th>Nombre completo</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>E-mail</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nombre + ' ' + cliente.apellido}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellido}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td>
+                    <a th:href="@{'/clientes/id/' + ${cliente.id}}">Ver</a>
+                    <a th:href="@{'/clientes/editar/' + ${cliente.id}}">Editar</a>
+                    <a th:href="@{'/clientes/borrar/' + ${cliente.id}}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${clientes != null && clientes.totalPages > 0}">
+        <a th:if="${!clientes.first}" th:href="@{/clientes/lista(page=${clientes.number - 1})}">Anterior</a>
+
+        <span th:each="i : ${#numbers.sequence(0, clientes.totalPages - 1)}">
+            <a th:if="${i == clientes.number}" th:text="${i + 1}"></a>
+            <a th:if="${i != clientes.number and (i >= clientes.number - 1 and i <= clientes.number + 1)}"
+               th:href="@{/clientes/lista(page=${i})}" th:text="${i + 1}"></a>
+        </span>
+
+        <a th:if="${!clientes.last}" th:href="@{/clientes/lista(page=${clientes.number + 1})}">Siguiente</a>
+    </div>
 </body>
 </html>

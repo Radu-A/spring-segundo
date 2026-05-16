@@ -1,5 +1,7 @@
 package com.unaempresa.segundoproyecto.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unaempresa.segundoproyecto.entity.Cliente;
 import com.unaempresa.segundoproyecto.service.IClienteService;
@@ -30,10 +33,13 @@ public class ClienteController {
     }
 
     @GetMapping("/lista")
-    public String lista(Model model) {
+    public String lista(@RequestParam(defaultValue = "0") int page,
+    		@RequestParam(defaultValue = "10") int size,
+    		Model model) {
+    	Page<Cliente> pagina = clienteService.findAllPaginado(PageRequest.of(page, size));
         model.addAttribute("cabecera", "Listado de todos los clientes");
         model.addAttribute("intro", "Esta es la lista de todos los clientes:");
-        model.addAttribute("clientes", clienteService.findAll());
+        model.addAttribute("clientes", pagina);
         return "cliente/listado";
     }
     
@@ -90,6 +96,14 @@ public class ClienteController {
         clienteService.save(cliente);
         return "redirect:/clientes/lista";
     }
-
+    
+    @GetMapping("/buscar")
+    public String buscar(@RequestParam(required = false) String nombre, Model model) {
+    	model.addAttribute("cabecera", "Buscar clientes por nombre");
+    	if (nombre != null && !nombre.isEmpty()) {
+    		model.addAttribute("clientes", clienteService.findByNombre(nombre));
+    	}
+    	return "cliente/buscar";
+    }
     
 }
