@@ -21,6 +21,7 @@ public class ClienteServiceImpl implements IClienteService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
     }
@@ -35,17 +36,20 @@ public class ClienteServiceImpl implements IClienteService {
     // En lugar de devolver null cuando el id no existe,
     // lanzamos una excepción de negocio que el @ControllerAdvice capturará.
     @Override
+    @Transactional(readOnly = true)
     public Cliente findById(Long id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new ClienteNoEncontradoException(id));
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         clienteRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public Cliente save(Cliente cliente) {
         return clienteRepository.save(cliente);
     }

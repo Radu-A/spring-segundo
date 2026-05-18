@@ -40,6 +40,8 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     @Transactional(readOnly = true)
     public List<Producto> findByNombre(String nombre) {
-        return productoRepository.findByNombreContainingIgnoreCase(nombre);
+    	List<Producto> productos = productoRepository.findByNombreContainingIgnoreCase(nombre);
+    	System.out.println("Productos en el service: " + productos);
+        return productos;
     }
 }

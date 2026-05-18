@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <a th:href="@{/pedidos/nuevo}">+ Nuevo pedido</a>
+    <a th:href="@{/clientes/buscar}">Buscar clientes</a>
+    <a th:href="@{/pedidos/por-estado}">Buscar pedidos por estado</a>
+    <a th:href="@{/productos/buscar}">Buscar productos</a>
+
+    <p th:if="${pedidos == null || pedidos.size() == 0}">
+        No hay datos que mostrar
+    </p>
+
+    <table th:if="${!(pedidos == null || pedidos.size() == 0)}" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Total</th>
+                <th>Cliente</th>
+                <th>Productos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pedido : ${pedidos}">
+                <td th:text="${pedido.id}"></td>
+                <td th:text="${pedido.fecha}"></td>
+                <td th:text="${pedido.estado}"></td>
+                <td th:text="${pedido.total}"></td>
+                <td th:text="${pedido.cliente.nombre + ' ' + pedido.cliente.apellido}"></td>
+		        <td>
+		            <span th:each="prod : ${pedido.productos}" th:text="${prod.nombre} + ', '"></span>
+		        </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

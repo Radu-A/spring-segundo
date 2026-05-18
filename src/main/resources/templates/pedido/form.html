@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<style>
+.campo-error {
+	border: 1px solid red;
+}
+
+.error {
+	color: red;
+	font-size: 0.85em;
+	display: block;
+	margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<p th:if="${pedido == null}">No hay datos que mostrar</p>
+
+	<form action="/pedidos/guardar" method="post">
+
+		<!-- Dropdown de clientes -->
+		<p>
+			<label>Cliente:</label> <select name="clienteId" required>
+				<option value="">-- Selecciona un cliente --</option>
+				<option th:each="cliente : ${clientes}" th:value="${cliente.id}"
+					th:text="${cliente.nombre + ' ' + cliente.apellido}"></option>
+			</select>
+		</p>
+
+		<!-- Estado -->
+		<p>
+			<label>Estado:</label> <select name="estado">
+				<option value="PENDIENTE">Pendiente</option>
+				<option value="COMPLETADO">Completado</option>
+				<option value="CANCELADO">Cancelado</option>
+			</select>
+		</p>
+
+		<!-- Total -->
+		<p>
+			<label>Total (€):</label> <input type="number" name="total"
+				step="0.01" min="0" required />
+		</p>
+
+		<!-- Checkboxes de productos (enviarán name="productoIds" múltiple) -->
+		<p>
+			<strong>Productos:</strong>
+		</p>
+		<div th:each="producto : ${productos}">
+			<input type="checkbox" name="productoIds" th:value="${producto.id}" />
+			<label th:text="${producto.nombre + ' — ' + producto.precio + ' €'}"></label>
+		</div>
+
+		<button type="submit">Guardar pedido</button>
+	</form>
+
+	<a th:href="@{/pedidos/lista}">Volver al listado</a>
+
+</body>
+</html>

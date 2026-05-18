@@ -13,28 +13,26 @@
 	    <button>Buscar</button>
 	</form>
 
-    <p th:if="${pedidos == null || pedidos.size() == 0}">
-        Este cliente no tiene pedidos.
+    <p th:if="${productos == null || productos.size() == 0}">
+        No hay productos con ese nombre.
     </p>
 
-    <table th:if="${pedidos != null && pedidos.size() > 0}" border="1">
+    <table th:if="${productos != null && productos.size() > 0}" border="1">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-                <th>Total</th>
-                <th>Productos</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Pedidos</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="pedido : ${pedidos}">
-                <td th:text="${pedido.id}"></td>
-                <td th:text="${pedido.fecha}"></td>
-                <td th:text="${pedido.estado}"></td>
-                <td th:text="${pedido.total}"></td>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.precio}"></td>
                 <td>
-                    <span th:each="prod : ${pedido.productos}" th:text="${prod.nombre} + ', '"></span>
+                    <span th:each="pedido : ${producto.pedidos}" th:text="${pedido.id} + ', '"></span>
                 </td>
             </tr>
         </tbody>
