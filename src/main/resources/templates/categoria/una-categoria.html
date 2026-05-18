@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+	<h1 th:text="${cabecera}"></h1>
+
+	<p th:if="${categoria == null}">No hay datos que mostrar</p>
+
+	<ul th:if="${categoria != null}">
+		<li>Id: <span th:text="${categoria.id}"></span></li>
+		<li>Nombre: <span th:text="${categoria.nombre}"></span></li>
+		<li>Descripción: <span th:text="${categoria.descripcion}"></span></li>
+	</ul>
+
+	<!-- Relación @OneToMany: pedidos de este cliente -->
+	<h2>Productos de esta categoría
+	</h2>
+
+	<p th:if="${#lists.isEmpty(categoria.productos)}">Esta categoría todavía no tiene productos.</p>
+
+	<table th:unless="${#lists.isEmpty(categoria.productos)}" border="1">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="producto : ${categoria.productos}">
+				<td th:text="${producto.id}"></td>
+				<td th:text="${producto.nombre}"></td>
+				<td th:text="${producto.precio}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a th:href="@{/categorias/lista}">Volver al listado</a>
+</body>
+</html>

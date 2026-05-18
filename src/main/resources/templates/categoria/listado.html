@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+</head>
+<body>
+    <h1 th:text="${cabecera}"></h1>
+
+    <p th:if="${categorias == null || categorias.totalElements == 0}">
+        No hay datos que mostrar
+    </p>
+
+    <table th:if="${!(categorias == null || categorias.totalElements == 0)}" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+				<td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="categoria : ${categorias}">
+                <td th:text="${categoria.id}"></td>
+                <td th:text="${categoria.nombre}"></td>
+                <td th:text="${categoria.descripcion}"></td>
+				<td >
+					<a th:href="@{'/categorias/id/' + ${categoria.id}}" target="_blank">Detalles</a>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${categorias != null && categorias.totalPages > 0}">
+        <a th:if="${!categorias.first}" th:href="@{/categorias/lista(page=${categorias.number - 1})}">Anterior</a>
+
+        <span th:each="i : ${#numbers.sequence(0, categorias.totalPages - 1)}">
+            <a th:if="${i == categorias.number}" th:text="${i + 1}"></a>
+            <a th:if="${i != categorias.number and (i >= categorias.number - 1 and i <= categorias.number + 1)}"
+               th:href="@{/categorias/lista(page=${i})}" th:text="${i + 1}"></a>
+        </span>
+
+        <a th:if="${!categorias.last}" th:href="@{/categorias/lista(page=${categorias.number + 1})}">Siguiente</a>
+    </div>
+</body>
+</html>

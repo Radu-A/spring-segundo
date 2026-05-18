@@ -205,3 +205,135 @@ INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (32, 32);
 
 -- Pedido 33 (Pedro): SSD
 INSERT INTO pedido_productos (pedido_id, producto_id) VALUES (33, 32);
+
+INSERT INTO categorias (nombre, descripcion) VALUES ('Portátiles', 'Ordenadores portátiles y laptops para trabajo, estudio y gaming.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Periféricos', 'Teclados, ratones y dispositivos de entrada para ordenadores.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Monitores', 'Pantallas de alta definición, monitores 4K y tecnología Eye Care.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Audio', 'Auriculares, altavoces y micrófonos de alta fidelidad y estudio.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Almacenamiento', 'Discos duros externos, memorias USB, tarjetas SD y unidades SSD.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Impresión', 'Impresoras multifunción, escáneres y accesorios de impresión.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Conectividad', 'Cables, hubs, adaptadores y componentes de interconexión.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Mobiliario', 'Sillas ergonómicas y elementos de confort para la oficina o el setup.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Smart Home', 'Dispositivos inteligentes y domótica para el hogar.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Smartphones', 'Teléfonos móviles inteligentes y dispositivos de telefonía.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Redes', 'Routers, puntos de acceso y dispositivos de red inalámbrica.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Iluminación', 'Lámparas de escritorio LED y sistemas de iluminación ambiental.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Accesorios de Escritorio', 'Soportes, alfombrillas y complementos organizadores.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Energía y Carga', 'Baterías externas, powerbanks y cargadores portátiles.');
+INSERT INTO categorias (nombre, descripcion) VALUES ('Limpieza y Cuidado', 'Kits de limpieza y mantenimiento para pantallas y componentes electrónicos.');
+
+-- Cat 1 (Portátiles) -> Prod 1 (Portátil Lenovo ThinkPad)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (1, 1);
+
+-- Cat 2 (Periféricos) -> Prod 2 (Ratón inalámbrico Logitech)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 2);
+
+-- Cat 3 (Monitores) -> Prod 3 (Monitor Samsung 27 pulgadas)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (3, 3);
+
+-- Cat 4 (Audio) -> Prod 5 (Auriculares Bluetooth Sony)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (4, 5);
+
+-- Cat 5 (Almacenamiento) -> Prod 7 (Disco duro externo 1TB)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (5, 7);
+
+-- Cat 6 (Impresión) -> Prod 9 (Impresora multifunción HP)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (6, 9);
+
+-- Cat 7 (Conectividad) -> Prod 10 (Cable HDMI 2m)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (7, 10);
+
+-- Cat 8 (Mobiliario) -> Prod 11 (Silla Ergonómica Pro)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (8, 11);
+
+-- Cat 9 (Smart Home) -> Prod 12 (Altavoces Inteligentes)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (9, 12);
+
+-- Cat 10 (Smartphones) -> Prod 14 (Smartphone Android G10)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (10, 14);
+
+-- Cat 11 (Redes) -> Prod 16 (Router WiFi 6)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (11, 16);
+
+-- Cat 12 (Iluminación) -> Prod 17 (Lámpara de escritorio LED)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (12, 17);
+
+-- Cat 13 (Accesorios de Escritorio) -> Prod 18 (Soporte para portátil)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 18);
+
+-- Cat 14 (Energía y Carga) -> Prod 23 (Batería externa 20000mAh)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (14, 23);
+
+-- Cat 15 (Limpieza y Cuidado) -> Prod 25 (Limpiador de pantallas Kit)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (15, 25);
+
+-- PRODUCTOS DEL PRIMER BLOQUE (Faltantes)
+
+-- Prod 4: Teclado mecánico RGB -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 4);
+
+-- Prod 6: Webcam HD 1080p -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 6);
+
+-- Prod 8: Memoria USB 64GB -> Almacenamiento (5)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (5, 8);
+
+-- Prod 12: Altavoces Inteligentes -> Añadimos también a Audio (4) (Ya estaba en Smart Home)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (4, 12);
+
+-- Prod 13: Microscopio Digital USB -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 13);
+
+-- Prod 15: Tableta Gráfica -> Periféricos (2) y Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 15);
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 15);
+
+-- Prod 19: Micrófono de condensador -> Audio (4)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (4, 19);
+
+-- Prod 20: Alfombrilla XL RGB -> Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 20);
+
+-- Prod 21: Adaptador USB-C Hub -> Conectividad (7) y Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (7, 21);
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 21);
+
+-- Prod 22: Funda para portátil 14" -> Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 22);
+
+-- Prod 24: Tarjeta SD 128GB -> Almacenamiento (5)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (5, 24);
+
+
+-- PRODUCTOS DEL SEGUNDO BLOQUE (IDs del 26 al 35)
+
+-- Prod 26: Laptop HP 15 -> Portátiles (1)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (1, 26);
+
+-- Prod 27: Ratón inalámbrico Logitech -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 27);
+
+-- Prod 28: Teclado mecánico Keychron K2 -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 28);
+
+-- Prod 29: Monitor 27" Samsung -> Monitores (3)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (3, 29);
+
+-- Prod 30: Auriculares Sony WH-1000XM5 -> Audio (4)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (4, 30);
+
+-- Prod 31: Webcam Logitech C920 -> Periféricos (2)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (2, 31);
+
+-- Prod 32: SSD Kingston 1TB -> Almacenamiento (5)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (5, 32);
+
+-- Prod 33: USB Hub 7 puertos -> Conectividad (7) y Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (7, 33);
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 33);
+
+-- Prod 34: Alfombrilla XL para escritorio -> Accesorios de Escritorio (13)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (13, 34);
+
+-- Prod 35: Adaptador USB-C multipuerto -> Conectividad (7)
+INSERT INTO categoria_productos (categoria_id, producto_id) VALUES (7, 35);
